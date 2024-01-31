@@ -2,7 +2,9 @@
 package main
 
 import (
+	"code/app"
 	_ "code/setup"
+	"code/storage"
 	"fmt"
 )
 
@@ -23,6 +25,25 @@ func squence(num int) int {
 }
 
 func main() {
+	AppUser := app.User{
+		Name: "Sadegh",
+		Age:  21,
+	}
+	storageUserMap := map[string]app.User{}
+	memory := storage.Memory{
+		Users: storageUserMap,
+	}
+
+	application := app.App{
+		Name:    "Bazar",
+		Storage: &memory,
+	}
+	application.CreateUser(AppUser)
+	fmt.Println("my user in memory : ", application.GetUser("Sadegh"))
+
+	application.Storage = storage.MyFile{}
+	// application.CreateUser(AppUser)
+	fmt.Println("my user in memory : ", application.GetUser("Sadegh"))
 
 }
 

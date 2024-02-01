@@ -2,9 +2,8 @@
 package main
 
 import (
-	"code/app"
+	"code/animal"
 	_ "code/setup"
-	"code/storage"
 	"fmt"
 )
 
@@ -25,7 +24,47 @@ func squence(num int) int {
 }
 
 func main() {
-	AppUser := app.User{
+	myLion := animal.Lion{
+		Name:  "risy",
+		Type:  "denger",
+		Level: 9,
+	}
+
+	AnimalCheck(myLion)
+	myDonkey := animal.Donkey{
+		Name: "rostam",
+		Type: "nader",
+	}
+	AnimalCheck(myDonkey)
+}
+
+// type assertion
+func AnimalCheck(a animal.Animal) {
+	// l, ok := a.(animal.Lion)
+	// if ok {
+	// 	fmt.Println("this animal is lion and level is", l.Level)
+	// } else {
+	// 	d, ok := a.(animal.Donkey)
+	// 	if ok {
+	// 		fmt.Println("this donkey and name is", d.Name)
+	// 	} else {
+	// 		fmt.Println("it's unknown Animal")
+	// 	}
+	// }
+	switch myAniml := a.(type) {
+	case animal.Lion:
+		fmt.Println("this animal is lion and level is", myAniml.Level)
+	case animal.Donkey:
+		fmt.Println("this is dockey and its name", myAniml.Name)
+	default:
+		fmt.Println("this is unkonwn animal")
+	}
+
+}
+
+/*
+// interface
+AppUser := app.User{
 		Name: "Sadegh",
 		Age:  21,
 	}
@@ -45,9 +84,6 @@ func main() {
 	// application.CreateUser(AppUser)
 	fmt.Println("my user in memory : ", application.GetUser("Sadegh"))
 
-}
-
-/*
 // new method
 user := User{ID: 1,
 		name: "Sadegh"}

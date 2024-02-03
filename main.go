@@ -2,18 +2,12 @@
 package main
 
 import (
-	"code/animal"
 	_ "code/setup"
 	"fmt"
 )
 
 func init() {
 	fmt.Println("init main go 0")
-}
-
-type User struct {
-	ID   int
-	name string
 }
 
 func squence(num int) int {
@@ -24,22 +18,35 @@ func squence(num int) int {
 }
 
 func main() {
-	myLion := animal.Lion{
-		Name:  "risy",
-		Type:  "denger",
-		Level: 9,
-	}
 
-	AnimalCheck(myLion)
-	myDonkey := animal.Donkey{
-		Name: "rostam",
-		Type: "nader",
-	}
-	AnimalCheck(myDonkey)
 }
 
+/*
+// inheritance
+
+type person struct {
+	Name string
+}
+
+func (p person) GetName() string {
+	return p.Name
+}
+
+type student struct {
+	person
+	Number int
+}
+
+	fmt.Printf("type of %v is %v \n", 1, reflect.TypeOf(1))
+	s := student{
+		Number: 2342,
+		person: person{Name: "ali"},
+	}
+	fmt.Println(s.GetName())
 // type assertion
 func AnimalCheck(a animal.Animal) {
+	// type assertion
+
 	// l, ok := a.(animal.Lion)
 	// if ok {
 	// 	fmt.Println("this animal is lion and level is", l.Level)
@@ -51,6 +58,7 @@ func AnimalCheck(a animal.Animal) {
 	// 		fmt.Println("it's unknown Animal")
 	// 	}
 	// }
+
 	switch myAniml := a.(type) {
 	case animal.Lion:
 		fmt.Println("this animal is lion and level is", myAniml.Level)
@@ -61,8 +69,18 @@ func AnimalCheck(a animal.Animal) {
 	}
 
 }
+myLion := animal.Lion{
+		Name:  "risy",
+		Type:  "denger",
+		Level: 9,
+	}
 
-/*
+	AnimalCheck(myLion)
+	myDonkey := animal.Donkey{
+		Name: "rostam",
+		Type: "nader",
+	}
+	AnimalCheck(myDonkey)
 // interface
 AppUser := app.User{
 		Name: "Sadegh",
@@ -209,7 +227,7 @@ start:
 	// fmt.Printf("Hello , %s", name)
 
 	// flags
-	// name := flag.String("name", "defult name", "user name")
+	// name := flag.String("name", "default name", "user name")
 	// age := flag.Int("age", 23, "user age")
 	// flag.Parse()
 	// fmt.Printf("hello %s you are %d years old ", *name, *age)
